@@ -1,4 +1,5 @@
-from flask import Flask, render_template, abort, Markup
+from flask import Flask, render_template, abort
+from markupsafe import Markup
 import markdown2
 from pathlib import Path
 
@@ -21,7 +22,7 @@ def home():
     content = render_markdown("index.md")
     return render_template("base.html", content=content)
 
-@app.route("/<page>")
+@app.route("/<page>.html")
 def page(page):
     content = render_markdown(f"{page}.md")
     return render_template("base.html", content=content)
